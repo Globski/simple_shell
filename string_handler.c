@@ -76,3 +76,21 @@ char *_strcat(char *d, char *s)
 
 	return (d);
 }
+
+/**
+ * _strchr - locates a character in a string.
+ * @s: pointer to the string.
+ * @c: character to be located.
+ * Return: pointer to the manipulated string.
+ */
+char *_strchr(char *s, char c)
+{
+	while (*s != '\0')
+	{
+		if (*s != c)
+			s++;
+		if (*s == c)
+			return (s);
+	}
+	return (NULL);
+}
