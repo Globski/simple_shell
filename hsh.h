@@ -2,8 +2,8 @@
 #define HSH_H
 
 /**
- * Description - Header file containing all function prototype used in the simple
- *		shell project.
+ * Description - Header file containing all function prototype used in the
+ *               simple shell project.
  */
 
 #include <stdio.h>
