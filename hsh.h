@@ -17,5 +17,6 @@ char *_strcpy(char *d, char *s);
 char *_strcat(char *d, char *s);
 char *_strchr(char *s, char c);
 int handle_env(void);
+void handle_exit(char *args);
 
 #endif /* #ifndef HSH_H */
