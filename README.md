@@ -304,7 +304,7 @@ name2='value2'
 ```shell
 $ alias my_alias='echo Hello, World!'
 ```
-   
+
 ### Handle Built-in Commands
 The hsh shell includes several built-in commands that are part of the shell itself. These built-ins provide essential functionality for users. Notable built-ins include:
   - `cd`: Change the current working directory.
