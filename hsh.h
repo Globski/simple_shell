@@ -10,4 +10,6 @@
 
 extern char **environ;
 
+char *_strcat(char *d, char *s);
+
 #endif /* #ifndef HSH_H */
