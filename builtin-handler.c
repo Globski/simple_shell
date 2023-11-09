@@ -22,3 +22,13 @@ int handle_env(void)
 		env++;
 	}
 }
+
+/**
+ * handle_exit - Handles the exit built-in commands.
+ * @args: the argument that will be passed.
+ */
+void handle_exit(char *args)
+{
+	if (_strcmp(args, "exit") == 0)
+		exit(0);
+}
