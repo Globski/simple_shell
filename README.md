@@ -240,7 +240,6 @@ Example:
 $ echo $$
 12345  
 ```
-
 ### Comment Support
 Comments in hsh provide a way to add remarks and annotations to command scripts. They are ignored by the shell and are for informational purposes only. In hsh, comments are created using the `#` symbol, and everything following `#` on a line is treated as a comment:
 
@@ -251,9 +250,8 @@ $ echo "Hello, World!"  # This is a comment
 
 ### Operators
 Operators in hsh provides support for logical operators `&&` and `||`, enabling conditional execution of commands based on the success or failure of preceding commands. it control's the execution flow of commands. They allow you to sequence multiple commands, create conditional execution paths, and manage script behavior. 
-  
-hsh supports the following operators:
 
+hsh supports the following operators:
 #### ;
 (Command Separator): The semicolon `;` is used to separate and execute multiple commands sequentially. Each command is executed one after the other, regardless of the success or failure of the previous command.
 
