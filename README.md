@@ -238,7 +238,7 @@ Example:
 ```shell
 ./hsh
 $ echo $$
-12345  
+12345
 ```
 ### Comment Support
 Comments in hsh provide a way to add remarks and annotations to command scripts. They are ignored by the shell and are for informational purposes only. In hsh, comments are created using the `#` symbol, and everything following `#` on a line is treated as a comment:
@@ -249,7 +249,7 @@ $ echo "Hello, World!"  # This is a comment
 ```
 
 ### Operators
-Operators in hsh provides support for logical operators `&&` and `||`, enabling conditional execution of commands based on the success or failure of preceding commands. it control's the execution flow of commands. They allow you to sequence multiple commands, create conditional execution paths, and manage script behavior. 
+Operators in hsh provides support for logical operators `&&` and `||`, enabling conditional execution of commands based on the success or failure of preceding commands. it control's the execution flow of commands. They allow you to sequence multiple commands, create conditional execution paths, and manage script behavior.
 
 hsh supports the following operators:
 #### ;
@@ -564,7 +564,7 @@ This project is maintained by the following contributors:
 This project is open source and available under the [MIT License](./LICENCE).
 
 ## Acknowledgments
-The "Simple Shell" project aims to create a basic command-line interpreter. hsh emulates basic functionality of the sh shell. 
+The "Simple Shell" project aims to create a basic command-line interpreter. hsh emulates basic functionality of the sh shell.
 We would like to express our sincere gratitude to [ALX Afica](https://www.alxafrica.com/) for providing the educational environment and guidance that enabled the development of this project.
 
 ALX Afica is a renowned full-stack software engineering program that prepares students for successful careers in the tech industry through project-based peer learning and a dedication to excellence. The project was created as part of the ALX Afica curriculum, and we want to acknowledge the institution for its invaluable support and resources.
