@@ -13,5 +13,6 @@ extern char **environ;
 
 int _strlen(char *s);
 char *_strcat(char *d, char *s);
+int handle_env(void);
 
 #endif /* #ifndef HSH_H */
