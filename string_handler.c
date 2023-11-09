@@ -13,7 +13,7 @@ int _strlen(char *s)
 	while (s[len])
 		len++;
 
-	return (len)
+	return (len);
 }
 
 /**
@@ -66,13 +66,14 @@ char *_strcpy(char *d, char *s)
  */
 char *_strcat(char *d, char *s)
 {
-	int i;
+	int i, len;
 
+	len = _strlen(d);
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		d[_strlen(d) + i] = s[i];
+		d[len + i] = s[i];
 	}
-	d[_strlen(d) + _strlen(s)] = '\0';
+	d[len + _strlen(s)] = '\0';
 
 	return (d);
 }
