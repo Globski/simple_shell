@@ -2,7 +2,7 @@
 
 /**
  * handle_env - Prints the current environment variables.
- * environment variables, one per line.
+ * one per line.
  *
  * Description: It iterates through the `environ` array and
  * prints each variable.
