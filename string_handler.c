@@ -16,6 +16,12 @@ int _strlen(char *s)
 	return (len)
 }
 
+/**
+ * _strcmp - compares two string.
+ * @s1: pointer to the first string.
+ * @s2: pointer to the second string.
+ * Return: difference of the length of both string, otherwise 0.
+ */
 int _strcmp(char *s1, char *s2)
 {
 	while (*s1 != '\0' || *s2 != '\0')
