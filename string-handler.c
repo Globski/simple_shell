@@ -38,7 +38,9 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * _strcpy - copies a string pointed to by s including the '\0' to a buffer pointerd to by d.
+ * _strcpy - copies a string pointed to by s
+ * including the '\0' to a buffer pointerd to by d.
+ *
  * @d: destination pointer.
  * @s: source pointer.
  * Return: pointer to the newly copied string.
