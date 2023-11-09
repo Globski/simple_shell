@@ -57,3 +57,22 @@ char *_strcpy(char *d, char *s)
 
 	return (d);
 }
+
+/**
+ * _strcat - Concatenates two strins.
+ * @s: source string.
+ * @d: destination string.
+ * Return: pointer to the appended string.
+ */
+char *_strcat(char *d, char *s)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		d[_strlen(d) + i] = s[i];
+	}
+	d[_strlen(d) + _strlen(s)] = '\0';
+
+	return (d);
+}
