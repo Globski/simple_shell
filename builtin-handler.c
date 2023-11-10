@@ -1,27 +1,19 @@
 #include "hsh.h"
 
 /**
- * handle_env - Prints the current environment variables.
- * one per line.
- *
- * Description: It iterates through the `environ` array and
- * prints each variable.
- *
- * Return: 0 on success, -1 if environment variables are not available.
+ * handle_env - Display environment variables
+ * @args: Ignored argument for compatibility
  */
-int handle_env(void)
+void handle_env(char **args)
 {
+	(void)args;
 	char **env = environ;
-
-	if (!env)
-		return (-1);
 
 	while (*env != NULL)
 	{
 		printf("%s\n", *env);
 		env++;
 	}
-	return (0);
 }
 
 /**
