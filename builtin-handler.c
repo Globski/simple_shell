@@ -29,6 +29,14 @@ int handle_env(void)
  */
 void handle_exit(char *args)
 {
+	int status;
+	
 	if (_strcmp(args, "exit") == 0)
 		exit(0);
+	
+	if (strncmp(args, "exit ", 5) == 0)
+	{
+		status = atoi(args + 5);
+		exit(status);
+	}
 }
