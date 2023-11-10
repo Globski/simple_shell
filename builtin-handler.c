@@ -44,3 +44,23 @@ void handle_exit(char **args)
 		exit(0);
 }
 
+/**
+ * handle_setenv - Handle the 'setenv' command.
+ * @args: An array of command arguments.
+ *
+ * This function processes the 'setenv' command, which is used to set or modify
+ * environment variables. It takes an array of strings (command arguments) and
+ * checks if it has the correct format. If so, it sets the specified environment
+ * variable with the provided value. If the 'setenv' command is used incorrectly,
+ * it displays an error message with the correct usage.
+ */
+void handle_setenv(char **args)
+{
+    if (args[1] != NULL && args[2] != NULL)
+    {
+        if (setenv(args[1], args[2], 1) != 0)
+            perror("setenv");
+        else
+            fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
+    }
+}
