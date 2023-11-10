@@ -48,7 +48,7 @@ void handle_exit(char **args)
  * handle_setenv - Handle the 'setenv' command.
  * @args: An array of command arguments.
  *
- * This function processes the 'setenv' command, which is used to set or modify
+ * Description: This function processes the 'setenv' command, which is used to set or modify
  * environment variables. It takes an array of strings (command arguments) and
  * checks if it has the correct format. If so, it sets the specified environment
  * variable with the provided value. If the 'setenv' command is used incorrectly,
