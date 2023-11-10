@@ -58,7 +58,13 @@ void handle_command(char *argv[])
 
 		if (command[bytes_read - 1] == '\n')
 			command[bytes_read - 1] = '\0';
-
+		child_pid = fork();
+		if (child_pid == -1)
+			exit(-1);
+		if (child_pid == 0)
+			handle_args(command, argv);
+		else
+			wait(&status);
+	}
 	free(command);
 }
-
