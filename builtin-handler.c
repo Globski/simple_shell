@@ -7,7 +7,7 @@
  * Description: It iterates through the `environ` array and
  * prints each variable.
  *
- * Return: 0 on success.
+ * Return: 0 on success, -1 if environment variables are not available.
  */
 int handle_env(void)
 {
