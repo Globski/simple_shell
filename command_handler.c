@@ -24,7 +24,6 @@ void get_args(char *command, char *args[])
  * handle_command - Reads and processes user commands in a shell loop.
  * @argv: The command-line arguments of the shell program.
  */
-
 void handle_command(char *argv[])
 {
 	ssize_t bytes_read = 0;
