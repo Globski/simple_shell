@@ -64,3 +64,26 @@ void handle_setenv(char **args)
             fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
     }
 }
+
+/**
+ * handle_unsetenv - Handle the 'unsetenv' command.
+ * @args: An array of command arguments.
+ *
+ * Description: This function processes the 'unsetenv' command, which is used to unset
+ * environment variables. It takes an array of strings (command arguments)
+ * and checks if it has the correct format. If so, it attempts to unset the
+ * specified environment variable. If the variable is successfully unset,
+ * it does nothing. If the variable doesn't exist or is not provided as
+ * an argument, it displays an error message with the correct usage.
+ */
+void handle_unsetenv(char **args)
+{
+	if (args[1] != NULL)
+	{
+		if (unsetenv(args[1]) != 0)
+			perror("unsetenv");
+		else
+			fprintf(stderr, "Usage: unsetenv VARIABLE\n");
+	}
+}
+
