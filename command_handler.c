@@ -22,7 +22,6 @@ void get_args(char *command, char *args[])
 
 /**
  * handle_command - Reads and processes user commands in a shell loop.
- *
  * @argv: The command-line arguments of the shell program.
  */
 
@@ -44,11 +43,13 @@ void handle_command(char *argv[])
 			if (feof(stdin))
 			{
 				printf("\n");
+				free(command);
 				exit(0);
 			}
 			else
 			{
 				perror("getline");
+				free(command);
 				exit(-1);
 			}
 		}
@@ -56,11 +57,13 @@ void handle_command(char *argv[])
 		if (bytes_read == 1)
 			continue;
 
-		if (command[bytes_read - 1] == '\n')
+		if (bytes_read > 1)
 			command[bytes_read - 1] = '\0';
+
 		child_pid = fork();
 		if (child_pid == -1)
 			exit(-1);
+
 		if (child_pid == 0)
 			handle_args(command, argv);
 		else
