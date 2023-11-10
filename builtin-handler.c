@@ -24,7 +24,7 @@ int handle_env(void)
 }
 
 /**
- * handle_exit - Handles the exit built-in commands.
+ * handle_exit - Handles the exit built-in commands with or without an exit status.
  * @args: the argument that will be passed.
  */
 void handle_exit(char *args)
