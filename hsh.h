@@ -6,8 +6,10 @@
  *               simple shell project.
  */
 
+#include <string.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 extern char **environ;
 
@@ -18,5 +20,6 @@ char *_strcat(char *d, char *s);
 char *_strchr(char *s, char c);
 int handle_env(void);
 void handle_exit(char *args);
+void handle_command(char *argv[]);
 
 #endif /* #ifndef HSH_H */
