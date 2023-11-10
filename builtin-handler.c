@@ -7,7 +7,7 @@
  * Description: It iterates through the `environ` array and
  * prints each variable.
  *
- * Return: No return value.
+ * Return: 0 on success.
  */
 int handle_env(void)
 {
@@ -21,6 +21,7 @@ int handle_env(void)
 		printf("%s\n", *env);
 		env++;
 	}
+	return (0);
 }
 
 /**
