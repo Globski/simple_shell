@@ -56,8 +56,9 @@ void handle_command(char *argv[])
 		if (bytes_read == 1)
 			continue;
 
-		command[strcspn(command, "\n")] = 0;
-	}
+		if (command[bytes_read - 1] == '\n')
+			command[bytes_read - 1] = '\0';
+
 	free(command);
 }
 
