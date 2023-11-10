@@ -1,4 +1,3 @@
-
 #ifndef HSH_H
 #define HSH_H
 
@@ -23,5 +22,6 @@ int handle_env(void);
 void handle_exit(char *args);
 void handle_command(char *argv[]);
 void handle_unsetenv(char **args);
+void handle_setenv(char **args);
 
 #endif /* #ifndef HSH_H */
