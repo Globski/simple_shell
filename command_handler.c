@@ -57,3 +57,34 @@ void handle_command(char *command)
 	if (!is_builtin)
 		execute_command(args);
 }
+
+/**
+ * execute_command - Execute a command in a child process.
+ * @args: Array of strings representing the command and its arguments.
+ *
+ * Description: This function forks a child process to execute the specified command.
+ * It utilizes the handle_path function to locate and update the command path.
+ * If the fork or execution fails, the child process exits with an error code.
+ * The parent process waits for the child process to complete.
+ *
+ * Returns: None
+ */
+void execute_command(char **args)
+{
+	int status;
+	
+	pid_t child_pid = fork();
+	if (child_pid == -1)
+	{
+		perror("fork");
+		exit(-1);
+	}
+	else if (child_pid == 0)
+	{
+		handle_path(args);
+		if (execve(args[0], args, environ) == -1)
+			exit(-1);
+	}
+	else
+		wait(&status);
+}
