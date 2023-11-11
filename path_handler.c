@@ -1,3 +1,5 @@
+#include "hsh.h"
+
 /**
  * handle_path - Locate and update the command path if not an absolute path.
  * @args: Array of strings representing the command and its arguments.
