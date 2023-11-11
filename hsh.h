@@ -21,10 +21,13 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *d, char *s);
 char *_strcat(char *d, char *s);
 char *_strchr(char *s, char c);
+
 void handle_env(char **args);
 void handle_exit(char **args);
-void handle_command(char **argv[]);
-void handle_unsetenv(char **args);
 void handle_setenv(char **args);
+void handle_unsetenv(char **args);
+
+void handle_command(char *command);
+void get_args(char *command, char *args[]);
 
 #endif /* #ifndef HSH_H */
