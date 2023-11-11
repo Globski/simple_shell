@@ -34,7 +34,10 @@ int main(int argc, char *argv[])
 		}
 
 		if (bytes_read == 1)
+		{
+			free(command);
 			continue;
+		}
 
 		if (command[bytes_read - 1] == '\n')
 			command[bytes_read - 1] = '\0';
