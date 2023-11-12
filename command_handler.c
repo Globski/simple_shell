@@ -21,52 +21,70 @@ void get_args(char *command, char *args[])
 }
 
 /**
- * handle_command - Reads and processes user commands in a shell loop.
- * @argv: The command-line arguments of the shell program.
+ * handle_command - Execute built-in commands or external commands.
+ * @command: The input command string to be processed.
+ *
+ * Description: This function parses the input command, identifies whether it is a
+ * built-in command (exit, env, setenv, unsetenv) or an external command,
+ * and then executes the appropriate action.
  */
-void handle_command(char *argv[])
+void handle_command(char *command)
 {
-	ssize_t bytes_read = 0;
-	char *command = NULL;
-	size_t commandSize = 0;
-	pid_t child_pid;
-	int status;
+	char *args[MAX_TOKENS];
+	int is_builtin = 0;
 
-	while (1)
+	get_args(command, args);
+	if (strcmp(args[0], "exit") == 0)
 	{
-		printf("$ ");
-		bytes_read = getline(&command, &commandSize, stdin);
-
-		if (bytes_read == -1)
-		{
-			if (feof(stdin))
-			{
-				printf("\n");
-				free(command);
-				exit(0);
-			}
-			else
-			{
-				perror("getline");
-				free(command);
-				exit(-1);
-			}
-		}
-
-		if (bytes_read == 1)
-			continue;
-
-		if (bytes_read > 1)
-			command[bytes_read - 1] = '\0';
-
-		child_pid = fork();
-		if (child_pid == -1)
-			exit(-1);
-
-		if (child_pid == 0)
-			handle_args(command, argv);
-		else
-			wait(&status);
+		handle_exit(args);
+		is_builtin = 1;
 	}
-	free(command);
+	else if (strcmp(args[0], "env") == 0)
+	{
+		handle_env(args);
+		is_builtin = 1;
+	}
+	else if (strcmp(args[0], "setenv") == 0)
+	{
+		handle_setenv(args);
+		is_builtin = 1;
+	}
+	else if (strcmp(args[0], "unsetenv") == 0)
+	{
+		handle_unsetenv(args);
+		is_builtin = 1;
+	}
+	if (!is_builtin)
+		execute_command(args);
+}
+
+/**
+ * execute_command - Execute a command in a child process.
+ * @args: Array of strings representing the command and its arguments.
+ *
+ * Description: This function forks a child process to execute the specified command.
+ * It utilizes the handle_path function to locate and update the command path.
+ * If the fork or execution fails, the child process exits with an error code.
+ * The parent process waits for the child process to complete.
+ *
+ * Returns: None
+ */
+void execute_command(char **args)
+{
+	int status;
+	
+	pid_t child_pid = fork();
+	if (child_pid == -1)
+	{
+		perror("fork");
+		exit(-1);
+	}
+	else if (child_pid == 0)
+	{
+		handle_path(args);
+		if (execve(args[0], args, environ) == -1)
+			exit(-1);
+	}
+	else
+		wait(&status);
 }

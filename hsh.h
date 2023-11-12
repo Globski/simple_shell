@@ -14,6 +14,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#define MAX_TOKENS 100
 extern char **environ;
 
 int _strlen(char *s);
@@ -26,5 +27,8 @@ void handle_exit(char **args);
 void handle_command(char *argv[]);
 void handle_unsetenv(char **args);
 void handle_setenv(char **args);
+void handle_unsetenv(char **args);
+void handle_command(char *command);
+void get_args(char *command, char *args[]);
 
 #endif /* #ifndef HSH_H */
