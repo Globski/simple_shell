@@ -1,3 +1,4 @@
+#include "hsh.h"
 /**
  * main - Entry point of the shell program.
  * @argc: The number of command-line arguments.
@@ -11,11 +12,12 @@
  */
 int main(int argc, char *argv[])
 {
+	(void) argc, (void) argv;
+	char *command = NULL;
+
 	while (1)
 	{
 		printf("$ ");
-
-		char *command = NULL;
 		size_t commandSize = 0;
 		ssize_t bytes_read = getline(&command, &commandSize, stdin);
 
@@ -48,4 +50,3 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
-
