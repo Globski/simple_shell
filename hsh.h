@@ -24,11 +24,14 @@ char *_strcat(char *d, char *s);
 char *_strchr(char *s, char c);
 void handle_env(char **args);
 void handle_exit(char **args);
-void handle_command(char *argv[]);
+void handle_command(char *argv);
 void handle_unsetenv(char **args);
 void handle_setenv(char **args);
 void handle_unsetenv(char **args);
 void handle_command(char *command);
 void get_args(char *command, char *args[]);
+void handle_path(char **args);
+void execute_command(char **args);
+char *_strtok(char *str, const char *delim);
 
 #endif /* #ifndef HSH_H */
