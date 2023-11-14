@@ -12,14 +12,15 @@
  */
 int main(int argc, char *argv[])
 {
-	(void) argc, (void) argv;
 	char *command = NULL;
+	size_t commandSize = 0;
+	ssize_t bytes_read;
+	(void) argc, (void) argv;
 
 	while (1)
 	{
 		printf("$ ");
-		size_t commandSize = 0;
-		ssize_t bytes_read = getline(&command, &commandSize, stdin);
+		bytes_read = getline(&command, &commandSize, stdin);
 
 		if (bytes_read == -1)
 		{
@@ -34,19 +35,16 @@ int main(int argc, char *argv[])
 				exit(-1);
 			}
 		}
-
 		if (bytes_read == 1)
 		{
 			free(command);
 			continue;
 		}
-
 		if (command[bytes_read - 1] == '\n')
 			command[bytes_read - 1] = '\0';
 
 		handle_command(command);
 		free(command);
 	}
-
 	return (0);
 }
