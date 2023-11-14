@@ -76,7 +76,7 @@ void handle_setenv(char **args)
  * it does nothing. If the variable doesn't exist or is not provided as
  * an argument, it displays an error message with the correct usage.
  */
-void hanqdle_unsetenv(char **args)
+void handle_unsetenv(char **args)
 {
 	if (args[1] != NULL)
 	{
