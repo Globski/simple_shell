@@ -4,10 +4,11 @@
  * handle_path - Locate and update the command path if not an absolute path.
  * @args: Array of strings representing the command and its arguments.
  *
- * Description: This function checks if the command in args[0] is an absolute path. If not,
- * it searches through the directories in the PATH environment variable to find
- * the executable and updates args[0] accordingly. If the executable is found,
- * the function modifies the args array with the full path.
+ * Description: This function checks if the command in args[0] is an absolute
+ * path If not. it searches through the directories in the PATH environment
+ * variable to find the executable and updates args[0] accordingly. If the
+ * executable is found, the function modifies the args array with the full
+ * path.
  *
  * Returns: None
  */
