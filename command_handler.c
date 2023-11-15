@@ -19,3 +19,4 @@ void get_args(char *command, char *args[])
 	}
 	args[i] = NULL;
 }
+
