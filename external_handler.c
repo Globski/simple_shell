@@ -8,7 +8,7 @@
  */
 char *_strtok(char *str, const char *delim)
 {
-	static char *nextToken = NULL;
+	static char *nextToken;
 	char *ptr;
 	int i;
 
@@ -20,7 +20,7 @@ char *_strtok(char *str, const char *delim)
 		nextToken++;
 	if (*nextToken == '\0')
 		return (NULL);
-	ptr = malloc(sizeof(char ) * _strlen(nextToken) + 1);
+	ptr = malloc(sizeof(char) * _strlen(nextToken) + 1);
 	if (ptr == NULL)
 		return (NULL);
 	for (i = 0; nextToken[i] && strchr(delim, nextToken[i]) == NULL; i++)
