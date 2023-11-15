@@ -24,9 +24,9 @@ void get_args(char *command, char *args[])
  * handle_command - Execute built-in commands or external commands.
  * @command: The input command string to be processed.
  *
- * Description: This function parses the input command, identifies whether it is a
- * built-in command (exit, env, setenv, unsetenv) or an external command,
- * and then executes the appropriate action.
+ * Description: This function parses the input command, identifies whether
+ * it is a built-in command (exit, env, setenv, unsetenv) or an external
+ * command, and then executes the appropriate action.
  */
 void handle_command(char *command)
 {
@@ -62,18 +62,18 @@ void handle_command(char *command)
  * execute_command - Execute a command in a child process.
  * @args: Array of strings representing the command and its arguments.
  *
- * Description: This function forks a child process to execute the specified command.
- * It utilizes the handle_path function to locate and update the command path.
- * If the fork or execution fails, the child process exits with an error code.
- * The parent process waits for the child process to complete.
+ * Description: This function forks a child process to execute the specified
+ * command. It utilizes the handle_path function to locate and update the
+ * command path. If the fork or execution fails, the child process exits with
+ * an error code. The parent process waits for the child process to complete.
  *
  * Returns: None
  */
 void execute_command(char **args)
 {
 	int status;
-	
 	pid_t child_pid = fork();
+
 	if (child_pid == -1)
 	{
 		perror("fork");
