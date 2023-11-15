@@ -4,9 +4,9 @@
  * @argc: The number of command-line arguments.
  * @argv: An array of strings representing the command-line arguments.
  *
- * Description: This function represents the main loop of a simple shell program. It prompts
- * the user for commands, processes the input, and executes either built-in
- * commands (exit, env, setenv, unsetenv) or external commands.
+ * Description: This function represents the main loop of a simple shell
+ * prigram. It prompts the user for commands, processes the input, and executes
+ * either built in commands (exit, env, setenv, unsetenv) or external commands.
  *
  * Return: Always returns 0.
  */
