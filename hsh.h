@@ -22,9 +22,9 @@
 
 extern char **environ;
 
-/* Structure to represent an alias */
 typedef struct
 {
+/* Structure to represent an alias */
 	char *name;
 	char *value;
 } Alias;
