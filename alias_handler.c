@@ -75,35 +75,35 @@ void replace_alias(char *name, char *value)
  */
 void set_alias(char *name, char *value)
 {
-        int i;
+	int i;
 
-        for (i = 0; i < numAliases; i++)
-        {
-                if (strcmp(aliases[i].name, name) == 0)
-                {
-                        free(aliases[i].value);
-                        aliases[i].value = strdup(value);
-                        if (!aliases[i].value)
-                        {
-                                perror("strdup");
-                                exit(EXIT_FAILURE);
-                        }
-                        return;
-                }
-        }
-        if (numAliases >= MAX_ALIASES)
-        {
-                fprintf(stderr, "Error: Maximum number of aliases reached\n");
-                exit(EXIT_FAILURE);
-        }
+	for (i = 0; i < numAliases; i++)
+	{
+		if (strcmp(aliases[i].name, name) == 0)
+		{
+			free(aliases[i].value);
+			aliases[i].value = strdup(value);
+			if (!aliases[i].value)
+			{
+				perror("strdup");
+				exit(EXIT_FAILURE);
+			}
+			return;
+		}
+	}
+	if (numAliases >= MAX_ALIASES)
+	{
+		fprintf(stderr, "Error: Maximum number of aliases reached\n");
+		exit(EXIT_FAILURE);
+	}
 
-        aliases[numAliases].name = strdup(name);
-        aliases[numAliases].value = strdup(value);
-        if (!aliases[numAliases].name || !aliases[numAliases].value)
-        {
-                perror("strdup");
-                exit(EXIT_FAILURE);
-        }
+	aliases[numAliases].name = strdup(name);
+	aliases[numAliases].value = strdup(value);
+	if (!aliases[numAliases].name || !aliases[numAliases].value)
+	{
+		perror("strdup");
+		exit(EXIT_FAILURE);
+	}
 
-        numAliases++;
+	numAliases++;
 }
