@@ -10,18 +10,27 @@
  */
 void handle_command_separator(char *command)
 {
-	char *commands[MAX_ARGS];
-	int i = 0;
+        char *commands[MAX_ARGS];
+        int i = 0;
+        char *token = _strtok(command, ";");
+        
+        while (token != NULL && i < MAX_ARGS - 1)
+        {
+                commands[i] = strdup(token);
+                token = _strtok(NULL, ";");
+                i++;
+        }
 
-	_strtok(command, ";", commands, MAX_ARGS);
+        commands[i] = NULL;
 
-	while (commands[i] != NULL)
-	{
-		handle_command(commands[i]);
-		i++;
-	}
+        while (i > 0)
+        {
+                handle_command(commands[i - 1]);
+                i--;
+        }
+
+        free_arguments(commands);
 }
-
 /**
  * handle_logical_and - Handles logical AND command chaining
  * @command: The input command string with '&&'-separated commands
@@ -34,18 +43,32 @@ void handle_command_separator(char *command)
  */
 void handle_logical_and(char *command)
 {
-	char *commands[MAX_ARGS];
-	int i = 0, result;
+        char *commands[MAX_ARGS];
+        int i = 0;
 
-	_strtok(command, "&&", commands, MAX_ARGS);
-	while (commands[i] != NULL)
-	{
-		result = system(commands[i]);
-		if (result != 0)
-			break;
-		i++;
-	}
+        char *token = _strtok(command, "&&");
+        while (token != NULL && i < MAX_ARGS - 1)
+        {
+                commands[i] = strdup(token);
+                token = _strtok(NULL, "&&");
+                i++;
+        }
+
+        commands[i] = NULL;
+
+        while (commands[i - 1] != NULL)
+        {
+                int result = system(commands[i - 1]);
+                if (result != 0)
+                {
+                        break;
+                }
+                i--;
+        }
+
+        free_arguments(commands);
 }
+
 
 /**
  * handle_logical_or - Handles logical OR command chaining
@@ -59,15 +82,28 @@ void handle_logical_and(char *command)
  */
 void handle_logical_or(char *command)
 {
-	char *commands[MAX_ARGS];
-	int i = 0, result;
+        char *commands[MAX_ARGS];
+        int i = 0;
 
-	_strtok(command, "||", commands, MAX_ARGS);
-	while (commands[i] != NULL)
-	{
-		result = system(commands[i]);
-		if (result == 0)
-			break;
-		i++;
-	}
+        char *token = _strtok(command, "||");
+        while (token != NULL && i < MAX_ARGS - 1)
+        {
+                commands[i] = strdup(token);
+                token = _strtok(NULL, "||");
+                i++;
+        }
+
+        commands[i] = NULL;
+
+        while (commands[i - 1] != NULL)
+        {
+                int result = system(commands[i - 1]);
+                if (result == 0)
+                {
+                        break;
+                }
+                i--;
+        }
+
+        free_arguments(commands);
 }

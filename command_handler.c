@@ -42,6 +42,8 @@ void handle_command(char *command)
 	else if (strcmp(args[0], "source") == 0)
 	{
 		if (args[1] == NULL || args[2] != NULL)
+		{
+                }
 		else
 			run_file_command(args[1]);
 	}
