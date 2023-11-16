@@ -33,7 +33,7 @@ typedef struct
 static Alias aliases[MAX_ALIASES];
 
 /* Counter for the number of aliases */
-static int numAliases = 0;
+static int numAliases;
 
 /* string-handler.c */
 int _strlen(char *s);
