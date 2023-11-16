@@ -55,46 +55,50 @@ void handle_comment(char *command)
  */
 char *_getline()
 {
-        static char buffer[BUFFER_SIZE];
-        static size_t buffer_index = 0, buffer_size = 0;
-        size_t end_position, line_size, read_size, i;
-        char *line;
+	static char buffer[BUFFER_SIZE];
+	static size_t buffer_index;
+	static size_t buffer_size;
+	size_t end_position, line_size, read_size, i;
+	char *line;
 
-        if (buffer_index >= buffer_size)
-        {
-                read_size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
-                if (read_size == -1)
-                {
-                        perror("read");
-                        exit(EXIT_FAILURE);
-                }
-                else if (read_size == 0)
-                        return NULL;
+	buffer_index = 0;
+	buffer_size = 0;
 
-                buffer_size = (size_t)read_size;
-                buffer_index = 0;
-        }
+	if (buffer_index >= buffer_size)
+	{
+		read_size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
+		if (read_size == -1)
+		{
+			perror("read");
+			exit(EXIT_FAILURE);
+		}
+		else if (read_size == 0)
+			return (NULL);
 
-        end_position = buffer_index;
-        while (end_position < buffer_size && buffer[end_position] != '\n')
-                end_position++;
+		buffer_size = (size_t)read_size;
+		buffer_index = 0;
+	}
 
-        line_size = end_position - buffer_index;
-        line = (char *)malloc(line_size + 1);
-        if (!line)
-        {
-                perror("malloc");
-                exit(EXIT_FAILURE);
-        }
-        for (i = 0; i < line_size; i++)
-                line[i] = buffer[buffer_index + i];
+	end_position = buffer_index;
+	while (end_position < buffer_size && buffer[end_position] != '\n')
+		end_position++;
 
-        line[line_size] = '\0';
+	line_size = end_position - buffer_index;
+	line = (char *)malloc(line_size + 1);
+	if (!line)
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
+	for (i = 0; i < line_size; i++)
+		line[i] = buffer[buffer_index + i];
 
-        if (end_position < buffer_size && buffer[end_position] == '\n')
-                buffer_index = end_position + 1;
-        else
-                buffer_index = buffer_size;
+	line[line_size] = '\0';
 
-        return line;
+	if (end_position < buffer_size && buffer[end_position] == '\n')
+		buffer_index = end_position + 1;
+	else
+		buffer_index = buffer_size;
+
+	return (line);
 }
