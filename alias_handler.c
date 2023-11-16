@@ -81,5 +81,5 @@ void cleanup_aliases(void)
  */
 void replace_alias(char *name, char *value)
 {
-        set_alias(name, value);
+	set_alias(name, value);
 }
