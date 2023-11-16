@@ -28,7 +28,7 @@ void handle_unsetenv(char *variable);
 void handle_command(char *command);
 void get_args(char *command, char *args[]);
 void handle_path(char **args);
-void execute_command(char **args);
+void execute_command(char *args[]);
 char *_strtok(char *str, const char *delim);
 
 void handle_exit(char *status);
