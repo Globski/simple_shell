@@ -63,23 +63,24 @@ void handle_path(char *command);
 /* execute_command.c */
 void execute_command(char *args[]);
 
-/* eexternal_handler.c */
+/* external_handler.c */
 char *_strtok(char *str, const char *delim);
 void handle_comment(char *command);
 char *_getline();
 
 /* alias_handler.c */
-void handle_alias(char *args[]);
 void add_alias(char *name, char *value);
 void print_alias(void);
 void cleanup_aliases(void);
 void replace_alias(char *name, char *value);
+void set_alias(char *name, char *value);
 
 /* operators_handler.c */
 void handle_command_separator(char *command);
 void handle_logical_and(char *command);
 void handle_logical_or(char *command);
 
+/* handle_alias.c */
 
 
 #endif /* #ifndef HSH_H */
