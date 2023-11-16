@@ -22,13 +22,17 @@
 
 extern char **environ;
 
+/* Structure to represent an alias */
 typedef struct
 {
 	char *name;
 	char *value;
 } Alias;
 
+/* Array to store aliases */
 static Alias aliases[MAX_ALIASES];
+
+/* Counter for the number of aliases */
 static int numAliases = 0;
 
 /* string-handler.c */
