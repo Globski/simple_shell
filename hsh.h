@@ -56,6 +56,7 @@ void handle_alias(char *args[]);
 void add_alias(char *name, char *value);
 void print_alias(void);
 void cleanup_aliases(void);
+void replace_alias(char *name, char *value);
 
 void handle_logical_or(char *command);
 void handle_logical_and(char *command);
