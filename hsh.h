@@ -27,7 +27,7 @@ char *_strchr(char *s, char c);
 /* builtin_handler.c */
 void handle_setenv(char *variable, char *value);
 void handle_unsetenv(char *variable);
-void handle_env();
+void handle_env(void);
 void handle_exit(char *status);
 
 /* command_handler.c */
