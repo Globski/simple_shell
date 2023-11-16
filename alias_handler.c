@@ -34,3 +34,21 @@ void print_alias(void)
 		printf("%s='%s'\n", aliases[i].name, aliases[i].value);
 	}
 }
+
+/**
+ * cleanup_aliases - Frees memory allocated for alias names and values.
+ *
+ * Description: This function iterates through the array of aliases and frees
+ * the memory allocated for both alias names and values. It ensures proper
+ * cleanup to prevent memory leaks after using aliases in the shell.
+ */
+void cleanup_aliases(void)
+{
+	int i;
+
+	for (i = 0; i < numAliases; i++)
+	{
+		free(aliases[i].name);
+		free(aliases[i].value);
+	}
+}
