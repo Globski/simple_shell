@@ -18,9 +18,10 @@
 
 extern char **environ;
 
-typedef struct {
-        char *name;
-        char *value;
+typedef struct
+{
+	char *name;
+	char *value;
 } Alias;
 
 static Alias aliases[MAX_ALIASES];
