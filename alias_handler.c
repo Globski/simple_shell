@@ -67,3 +67,19 @@ void cleanup_aliases(void)
 		free(aliases[i].value);
 	}
 }
+
+/**
+ * replace_alias - Replaces an existing alias or sets a new one.
+ * @name: The name of the alias to replace or set.
+ * @value: The value to assign to the alias.
+ *
+ * Description: This function replaces an existing alias with the provided
+ * name if found, or sets a new alias if the name does not exist. It delegates
+ * the replacement or setting operation to the set_alias function, ensuring
+ * proper handling of memory allocation. Any existing value associated with
+ * the alias is freed before updating.
+ */
+void replace_alias(char *name, char *value)
+{
+        set_alias(name, value);
+}
