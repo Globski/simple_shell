@@ -85,5 +85,6 @@ void handle_alias(char *args[]);
 
 /* variable_handler.c */
 void handle_variable_replacement(char *command);
+void handle_variable_assignment(char *assignment);
 
 #endif /* #ifndef HSH_H */
