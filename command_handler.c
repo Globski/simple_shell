@@ -23,8 +23,10 @@ void handle_command(char *command)
 		i++;
 	}
 	args[i] = NULL;
-	if (i == 0  args[0] == NULL)
+	 if (i == 0 || args[0] == NULL)
 		return;
+	if (strchr(command, '=') != NULL)
+		handle_variable_assignment(command);
 	if (strcmp(args[0], "exit") == 0)
 		handle_exit(args[1]);
 	else if (strcmp(args[0], "env") == 0)
@@ -39,7 +41,7 @@ void handle_command(char *command)
 		handle_alias(args);
 	else if (strcmp(args[0], "source") == 0)
 	{
-		if (args[1] == NULL  args[2] != NULL)
+		if (args[1] == NULL || args[2] != NULL)
 		else
 			run_file_command(args[1]);
 	}
