@@ -14,6 +14,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#define MAX_INPUT_SIZE 1024
+#define MAX_ARGS 100
+#define BUFFER_SIZE 1024
+#define MAX_ALIASES 100
 
 extern char **environ;
 
