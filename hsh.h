@@ -54,11 +54,14 @@ void handle_exit(char *status);
 
 /* command_handler.c */
 void handle_command(char *command);
+void free_arguments(char *args[]);
 
 /* path_handler.c */
 void handle_path(char *command);
 
+/* execute_command.c */
 void execute_command(char *args[]);
+
 char *_strtok(char *str, const char *delim);
 
 /* alias_handler.c */
