@@ -39,6 +39,7 @@ char *_strtok(char *str, const char *delim);
 
 /* alias_handler.c */
 void handle_alias(char *args[]);
+void add_alias(char *name, char *value);
 
 void handle_logical_or(char *command);
 void handle_logical_and(char *command);
