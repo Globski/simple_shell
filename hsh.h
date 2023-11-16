@@ -15,7 +15,16 @@
 #include <sys/wait.h>
 
 #define MAX_TOKENS 100
+
 extern char **environ;
+
+typedef struct {
+        char *name;
+        char *value;
+} Alias;
+
+static Alias aliases[MAX_ALIASES];
+static int numAliases = 0;
 
 /* string-handler.c */
 int _strlen(char *s);
