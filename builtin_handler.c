@@ -58,31 +58,31 @@ void handle_unsetenv(char *variable)
  */
 void handle_exit(char *status)
 {
-        int valid = 1;
-        size_t i;
+	int valid = 1;
+	size_t i;
 
-        if (status == NULL)
-                exit(EXIT_SUCCESS);
-        else
-        {
-                valid = 1;
-                for (i = 0; i < strlen(status); i++)
-                {
-                        if (!isdigit(status[i]))
-                        {
-                                valid = 0;
-                                break;
-                        }
-                }
+	if (status == NULL)
+		exit(EXIT_SUCCESS);
+	else
+	{
+		valid = 1;
+		for (i = 0; i < strlen(status); i++)
+		{
+			if (!isdigit(status[i]))
+			{
+				valid = 0;
+				break;
+			}
+		}
 
-                if (valid)
-                {
-                        int exit_code = atoi(status);
-                        exit(exit_code);
-                }
-                else
-                        fprintf(stderr, "/bin/sh: 1: exit: Illegal number: %s\n", status);
-        }
+		if (valid)
+		{
+			int exit_code = atoi(status);
+			exit(exit_code);
+		}
+		else
+			fprintf(stderr, "/bin/sh: 1: exit: Illegal number: %s\n", status);
+	}
 }
 
 /**
@@ -93,7 +93,7 @@ void handle_exit(char *status)
  */
 void handle_env()
 {
-        char **env_var = environ;
+	char **env_var = environ;
 
 	while (*env_var != NULL)
 	{
