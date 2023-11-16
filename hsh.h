@@ -23,17 +23,13 @@
 extern char **environ;
 
 /**
- * Alias - Structure representing an alias
- * @name: The name of the alias
- * @value: The value associated with the alias
- *
- * Description:
- * This structure defines an alias in the simple shell program. It contains two
- * members: 'name' for the alias name and 'value' for the associated value. This
- * structure is used to manage aliases throughout the shell program.
+ * struct Alias - Represents an alias in the shell.
+ * @name: The name of the alias.
+ * @value: The value associated with the alias.
  */
-typedef struct
+typedef struct Alias
 {
+/* Structure to represent an alias */
 	char *name;
 	char *value;
 } Alias;
