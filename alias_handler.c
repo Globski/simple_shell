@@ -62,3 +62,48 @@ void replace_alias(char *name, char *value)
 {
 	set_alias(name, value);
 }
+
+/**
+ * set_alias - Sets or updates an alias with the provided name and value.
+ * @name: The name of the alias to set or update.
+ * @value: The value to assign to the alias.
+ *
+ * Description: Searches for an existing alias with the given name. If found,
+ * updates the alias with the provided value. If not found and the maximum
+ * aliases is not reached, adds a new alias. Memory is dynamically allocated
+ * for the alias name and value. Any existing value is freed before updating.
+ */
+void set_alias(char *name, char *value)
+{
+        int i;
+
+        for (i = 0; i < numAliases; i++)
+        {
+                if (strcmp(aliases[i].name, name) == 0)
+                {
+                        free(aliases[i].value);
+                        aliases[i].value = strdup(value);
+                        if (!aliases[i].value)
+                        {
+                                perror("strdup");
+                                exit(EXIT_FAILURE);
+                        }
+                        return;
+                }
+        }
+        if (numAliases >= MAX_ALIASES)
+        {
+                fprintf(stderr, "Error: Maximum number of aliases reached\n");
+                exit(EXIT_FAILURE);
+        }
+
+        aliases[numAliases].name = strdup(name);
+        aliases[numAliases].value = strdup(value);
+        if (!aliases[numAliases].name || !aliases[numAliases].value)
+        {
+                perror("strdup");
+                exit(EXIT_FAILURE);
+        }
+
+        numAliases++;
+}
