@@ -47,3 +47,22 @@ void handle_command(char *command)
 		execute_command(args);
 	free_arguments(args);
 }
+
+/**
+ * free_arguments - Frees memory allocated for an array of strings.
+ * @args: The array of strings to be freed.
+ *
+ * Description: This function iterates through the array of strings and frees
+ * the memory allocated for each string. It is designed to be used with arrays
+ * created dynamically, such as those used for storing command arguments.
+ */
+void free_arguments(char *args[])
+{
+	int i = 0;
+
+	while (args[i] != NULL)
+	{
+		free(args[i]);
+		i++;
+	}
+}
