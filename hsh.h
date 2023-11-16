@@ -83,4 +83,7 @@ void handle_logical_or(char *command);
 /* handle_alias.c */
 void handle_alias(char *args[]);
 
+/* variable_handler.c */
+void handle_variable_replacement(char *command);
+
 #endif /* #ifndef HSH_H */
