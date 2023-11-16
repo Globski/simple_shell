@@ -32,4 +32,6 @@ void handle_path(char **args);
 void execute_command(char **args);
 char *_strtok(char *str, const char *delim);
 
+void handle_exit(char *status);
+
 #endif /* #ifndef HSH_H */
