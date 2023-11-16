@@ -66,6 +66,7 @@ void execute_command(char *args[]);
 /* eexternal_handler.c */
 char *_strtok(char *str, const char *delim);
 void handle_comment(char *command);
+char *_getline();
 
 /* alias_handler.c */
 void handle_alias(char *args[]);
