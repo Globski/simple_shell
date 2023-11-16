@@ -23,7 +23,7 @@ void handle_command(char *command)
 		i++;
 	}
 	args[i] = NULL;
-	 if (i == 0 || args[0] == NULL)
+	if (i == 0 || args[0] == NULL)
 		return;
 	if (strchr(command, '=') != NULL)
 		handle_variable_assignment(command);
