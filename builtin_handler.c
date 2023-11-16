@@ -58,7 +58,7 @@ void handle_unsetenv(char *variable)
  */
 void handle_exit(char *status)
 {
-	int valid = 1;
+	int valid = 1, exit_code;
 	size_t i;
 
 	if (status == NULL)
@@ -77,7 +77,7 @@ void handle_exit(char *status)
 
 		if (valid)
 		{
-			int exit_code = atoi(status);
+			exit_code = atoi(status);
 			exit(exit_code);
 		}
 		else
@@ -91,7 +91,7 @@ void handle_exit(char *status)
  * Description: This function iterates through the current environment
  * variables and prints each one to the standard output.
  */
-void handle_env()
+void handle_env(void)
 {
 	char **env_var = environ;
 
