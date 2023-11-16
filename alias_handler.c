@@ -78,33 +78,47 @@ void cleanup_aliases(void)
  * maximum number of aliases is not reached, it adds a new alias. Memory is
  * dynamically allocated for both the alias name and value.
  * Any existing value associated with the alias is freed before updating.
- */   
- if (strcmp(aliases[i].name, name) == 0)
- {
-                    free(aliases[i].value);
-                    aliases[i].value = strdup(value);
-                    if (!aliases[i].value)
-                    {
-                        perror("strdup");
-                        exit(EXIT_FAILURE);
-                    }
-                    return;
-                }
-        }
-
-        if (numAliases >= MAX_ALIASES)
-        {
-                fprintf(stderr, "Error: Maximum number of aliases reached\n");
-                exit(EXIT_FAILURE);
-        }
-
-        aliases[numAliases].name = strdup(name);
-        aliases[numAliases].value = strdup(value);
-        if (!aliases[numAliases].name || !aliases[numAliases].value)
-        {
-                perror("strdup");
-                exit(EXIT_FAILURE);
-        }
-
-        numAliases++;
+ */ 
+void set_alias(char *name, char *value)
+{
+	int i;
+	for (i = 0; i < numAliases; i++)
+	{
+		if (strcmp(aliases[i].name, name) == 0)
+		{
+			free(aliases[i].value);
+			aliases[i].value = strdup(value);
+			if (!aliases[i].value)
+			{
+				perror("strdup");
+				exit(EXIT_FAILURE);
+			}
+			return;
+		}
+	}
+	if (strcmp(aliases[i].name, name) == 0)
+	{
+		free(aliases[i].value);
+		aliases[i].value = strdup(value);
+		if (!aliases[i].value)
+		{
+			perror("strdup");
+			exit(EXIT_FAILURE);
+		}
+		return;
+	}
+}
+if (numAliases >= MAX_ALIASES)
+{
+	fprintf(stderr, "Error: Maximum number of aliases reached\n");
+	exit(EXIT_FAILURE);
+}
+aliases[numAliases].name = strdup(name);
+aliases[numAliases].value = strdup(value);
+if (!aliases[numAliases].name || !aliases[numAliases].value)
+{
+	perror("strdup");
+	exit(EXIT_FAILURE);
+}
+numAliases++;
 }
