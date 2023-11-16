@@ -101,3 +101,55 @@ void handle_env(void)
 		env_var++;
 	}
 }
+
+/**
+ * handle_cd - Change the current working directory.
+ * @dir: The target directory path.
+ *
+ * Change the current working directory based on the specified
+ * directory path. Supports changing to the home directory, the
+ * previous directory, or a specific directory.
+ */
+void handle_cd(char *dir)
+{
+	char *home_dir = getenv("HOME"), new_dir[MAX_ARGS];
+	char *previous_dir = getenv("PWD"), current_dir[MAX_ARGS];
+
+	if (dir == NULL)
+	{
+		if (home_dir == NULL)
+		{
+			fprintf(stderr, "Error: HOME environment variable not set\n");
+			return;
+		}
+		else
+			strncpy(new_dir, home_dir, sizeof(new_dir) - 1);
+	}
+	else if (strcmp(dir, "-") == 0)
+	{
+		if (previous_dir == NULL)
+		{
+			fprintf(stderr, "Error: Previous directory not set\n");
+			return;
+		}
+		else
+			strncpy(new_dir, previous_dir, sizeof(new_dir) - 1);
+	}
+	else
+		strncpy(new_dir, dir, sizeof(new_dir) - 1);
+	if (getcwd(current_dir, sizeof(current_dir)) == NULL)
+	{
+		perror("getcwd");
+		return;
+	}
+	if (chdir(new_dir) != 0)
+	{
+		perror("chdir");
+		return;
+	}
+	if (setenv("PWD", current_dir, 1) != 0)
+	{
+		perror("setenv");
+		return;
+	}
+}
