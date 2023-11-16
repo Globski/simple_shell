@@ -32,5 +32,8 @@ void execute_command(char **args);
 char *_strtok(char *str, const char *delim);
 
 void handle_exit(char *status);
+void handle_logical_or(char *command);
+void handle_logical_and(char *command);
+void handle_command_separator(char *command);
 
 #endif /* #ifndef HSH_H */
