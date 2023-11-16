@@ -22,6 +22,21 @@ void handle_alias(char *args[])
 }
 
 /**
+ * add_alias - Adds a new alias or updates an existing one.
+ * @name: The name of the alias to add or update.
+ * @value: The value to assign to the alias.
+ *
+ * Description: This function adds a new alias or updates the value of an
+ * existing alias. It utilizes the set_alias function to set or update the
+ * value of the specified alias, ensuring that the alias is added or
+ * modified accordingly.
+ */
+void add_alias(char *name, char *value)
+{
+        set_alias(name, value);
+}
+
+/**
  * print_alias - Prints the current list of aliases
  *
  * Description: This function iterates through the array of aliases and prints
