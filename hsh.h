@@ -62,7 +62,9 @@ void handle_path(char *command);
 /* execute_command.c */
 void execute_command(char *args[]);
 
+/* eexternal_handler.c */
 char *_strtok(char *str, const char *delim);
+void handle_comment(char *command);
 
 /* alias_handler.c */
 void handle_alias(char *args[]);
