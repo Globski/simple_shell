@@ -52,6 +52,7 @@ void handle_setenv(char *variable, char *value);
 void handle_unsetenv(char *variable);
 void handle_env(void);
 void handle_exit(char *status);
+void handle_cd(char *dir);
 
 /* command_handler.c */
 void handle_command(char *command);
