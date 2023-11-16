@@ -15,58 +15,56 @@
 
 void handle_path(char *command)
 {
-	char *args[], *path, *path_copy, *dir, full_path;
+        if (command[0] == '/')
+        {
+                if (access(command, X_OK) == 0)
+                {
+                        char *args[] = {command, NULL};
+                        execve(command, args, environ);
 
-	if (command[0] == '/')
-	{
-		if (access(command, X_OK) == 0)
-		{
-			args[] = {command, NULL};
-			execve(command, args, environ);
+                        perror("execve");
+                        exit(EXIT_FAILURE);
+                }
+                else
+                {
+                        fprintf(stderr, "Error: Command not found: %s\n", command);
+                        return;
+                }
+        }
 
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			fprintf(stderr, "Error: Command not found: %s\n", command);
-			return;
-		}
-	}
+        char *path = getenv("PATH");
+        if (path == NULL)
+        {
+                fprintf(stderr, "Error: PATH environment variable not set\n");
+                return;
+        }
 
-	path = getenv("PATH");
-	if (path == NULL)
-	{
-		fprintf(stderr, "Error: PATH environment variable not set\n");
-		return;
-	}
+        char *path_copy = strdup(path);
+        if (path_copy == NULL)
+        {
+                perror("strdup");
+                exit(EXIT_FAILURE);
+        }
 
-	path_copy = strdup(path);
-	if (path_copy == NULL)
-	{
-		perror("strdup");
-		exit(EXIT_FAILURE);
-	}
+        char *dir = _strtok(path_copy, ":");
+        while (dir != NULL)
+        {
+                char full_path[BUFFER_SIZE];
+                snprintf(full_path, sizeof(full_path), "%s/%s", dir, command);
 
-	dir = strtok(path_copy, ":");
-	while (dir != NULL)
-	{
-		full_path[BUFFER_SIZE];
-		snprintf(full_path, sizeof(full_path), "%s/%s", dir, command);
+                if (access(full_path, X_OK) == 0)
+                {
+                        char *args[] = {full_path, NULL};
+                        execve(full_path, args, environ);
 
-		if (access(full_path, X_OK) == 0)
-		{
-			args[] = {full_path, NULL};
-			execve(full_path, args, environ);
+                        perror("execve");
+                        exit(EXIT_FAILURE);
+                }
 
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
+                dir = _strtok(NULL, ":");
+        }
 
-		dir = strtok(NULL, ":");
-	}
+        fprintf(stderr, "Error: Command not found: %s\n", command);
 
-	fprintf(stderr, "Error: Command not found: %s\n", command);
-
-	free(path_copy);
+        free(path_copy);
 }
