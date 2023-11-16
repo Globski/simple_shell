@@ -76,6 +76,7 @@ void replace_alias(char *name, char *value)
 void set_alias(char *name, char *value)
 {
         int i;
+
         for (i = 0; i < numAliases; i++)
         {
                 if (strcmp(aliases[i].name, name) == 0)
