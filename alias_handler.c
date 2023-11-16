@@ -33,7 +33,7 @@ void handle_alias(char *args[])
  */
 void add_alias(char *name, char *value)
 {
-        set_alias(name, value);
+	set_alias(name, value);
 }
 
 /**
