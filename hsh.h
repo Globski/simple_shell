@@ -81,6 +81,6 @@ void handle_logical_and(char *command);
 void handle_logical_or(char *command);
 
 /* handle_alias.c */
-
+void handle_alias(char *args[]);
 
 #endif /* #ifndef HSH_H */
