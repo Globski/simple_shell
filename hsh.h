@@ -73,8 +73,11 @@ void print_alias(void);
 void cleanup_aliases(void);
 void replace_alias(char *name, char *value);
 
-void handle_logical_or(char *command);
-void handle_logical_and(char *command);
+/* operators_handler.c */
 void handle_command_separator(char *command);
+void handle_logical_and(char *command);
+void handle_logical_or(char *command);
+
+
 
 #endif /* #ifndef HSH_H */
