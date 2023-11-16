@@ -90,7 +90,6 @@ void set_alias(char *name, char *value)
                         return;
                 }
         }
-
         if (numAliases >= MAX_ALIASES)
         {
                 fprintf(stderr, "Error: Maximum number of aliases reached\n");
