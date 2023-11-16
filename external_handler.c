@@ -42,6 +42,6 @@ void handle_comment(char *command)
 {
 	char *comment_position = strchr(command, '#');
 
-        if (comment_position != NULL)
+	if (comment_position != NULL)
 		*comment_position = '\0';
 }
