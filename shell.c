@@ -1,17 +1,18 @@
 #include "hsh.h"
 
 /**
- * run_non_interactive_mode - Run the shell in non-interactive mode, processing input.
+ * run_non_interactive_mode - Run the shell in non-interactive mode,
+ * processing input.
  */
-void run_non_interactive_mode()
+void run_non_interactive_mode(void)
 {
-    char *input;
+	char *input;
 
-    while ((input = _getline()) != NULL)
-    {
-        execute_command(input);
-        free(input);
-    }
+	while ((input = _getline()) != NULL)
+	{
+		execute_command(input);
+		free(input);
+	}
 }
 
 /**
@@ -20,8 +21,8 @@ void run_non_interactive_mode()
  * @argv: Array of command-line argument strings
  *
  * Description: Sets up signal handlers, saves original terminal settings,
- * and runs interactive or non-interactive mode based on the number of
- * command-line arguments.
+ * and runs interactive or non-interactive mode based on the
+ * number of command-line arguments.
  *
  * Return: 0 if successful.
  */
