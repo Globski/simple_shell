@@ -40,6 +40,7 @@ void process_builtin_commands(char *input);
 
 /* execute_handler.c */
 void execute_command(char *command);
+void execute_external_command(char *args[]);
 
 /* external_handler.c */
 char *_strtok(char *str, const char *delim);
