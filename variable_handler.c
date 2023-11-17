@@ -13,46 +13,42 @@
  */
 void handle_variable_replacement(char *command)
 {
-        char *token;
-        char *rest = command;
+	char *token;
+	char *rest = command;
+	(void) numAliases, (void) aliases;
 
-        while ((token = _strtok(rest, " \t\n")) != NULL)
-        {
-                if (token[0] == '$')
-                {
-                        if (strcmp(token, "$") == 0)
-                        {
-                                printf("%d ", getpid());
-                        }
-                        else if (strcmp(token, "$$") == 0)
-                        {
-                                printf("%d ", getpid());
-                        }
-                        else if (strcmp(token, "$?") == 0)
-                        {
-                                printf("%d ", WEXITSTATUS(getpid()));
-                        }
-                        else
-                        {
-                                char *env_value = getenv(token + 1);
-                                if (env_value != NULL)
-                                {
-                                        printf("%s ", env_value);
-                                }
-                                else
-                                {
-                                        fprintf(stderr, "Error: Undefined variable '%s'\n", token);
-                                }
-                        }
-                }
-                else
-                {
-                        printf("%s ", token);
-                }
-                rest = NULL; 
-        }
+	while ((token = _strtok(rest, " \t\n")) != NULL)
+	{
+		if (token[0] == '$')
+		{
+			if (strcmp(token, "$") == 0)
+			{
+				printf("%d ", getpid());
+			}
+			else if (strcmp(token, "$$") == 0)
+			{
+				printf("%d ", getpid());
+			}
+			else if (strcmp(token, "$?") == 0)
+			{
+				printf("%d ", WEXITSTATUS(getpid()));
+			}
+			else
+			{
+				char *env_value = getenv(token + 1);
 
-        printf("\n");
+				if (env_value != NULL)
+					printf("%s ", env_value);
+				else
+					fprintf(stderr, "Error: Undefined variable '%s'\n", token);
+			}
+		}
+		else
+			printf("%s ", token);
+		rest = NULL;
+	}
+
+	printf("\n");
 }
 /**
  * handle_variable_assignment - Handles variable assignments in the shell.
@@ -66,33 +62,33 @@ void handle_variable_replacement(char *command)
  */
 void handle_variable_assignment(char *assignment)
 {
-        char *equal_sign, *variable, *value;
-        size_t value_length;
+	char *equal_sign, *variable, *value;
+	size_t value_length;
+	(void) numAliases, (void) aliases;
 
-        equal_sign = strchr(assignment, '=');
-        if (equal_sign == NULL || equal_sign == assignment)
-        {
-                fprintf(stderr, "Error: Invalid variable assignment: %s\n", assignment);
-                return;
-        }
+	equal_sign = strchr(assignment, '=');
+	if (equal_sign == NULL || equal_sign == assignment)
+	{
+		fprintf(stderr, "Error: Invalid variable assignment: %s\n", assignment);
+		return;
+	}
 
-        *equal_sign = '\0';
-        variable = assignment;
-        value = equal_sign + 1;
+	*equal_sign = '\0';
+	variable = assignment;
+	value = equal_sign + 1;
 
-        while (*variable != '\0' && isspace(*variable))
-                variable++;
+	while (*variable != '\0' && isspace(*variable))
+		variable++;
 
-        value_length = strlen(value);
-        while (value_length > 0 && isspace(value[value_length - 1]))
-                value_length--;
+	value_length = strlen(value);
+	while (value_length > 0 && isspace(value[value_length - 1]))
+		value_length--;
 
-        value[value_length] = '\0';
+	value[value_length] = '\0';
 
-        if (setenv(variable, value, 1) != 0)
-        {
-                perror("setenv");
-                return;
-        }
+	if (setenv(variable, value, 1) != 0)
+	{
+		perror("setenv");
+		return;
+	}
 }
-
