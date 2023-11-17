@@ -47,6 +47,7 @@ void process_external_command(char *input);
 char *_strtok(char *str, const char *delim);
 void handle_comment(char *command);
 char *_getline();
+void handle_signals(int signo);
 
 /* operators_handler.c */
 void handle_command_separator(char *command);
