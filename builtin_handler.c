@@ -14,54 +14,44 @@ void handle_setenv(char *arg)
         handle_special_characters(value);
 
         if (setenv(name, value, 1) != 0)
-        {
             fprintf(stderr, "setenv: Unable to set environment variable\n");
-        }
     }
     else
-    {
         fprintf(stderr, "setenv: Invalid syntax\n");
-    }
 }
 
 /**
- * handle_exit - Handles the 'exit' built-in command
- * @status: The exit status as a string
- *
- * Description: This function processes the 'exit' command, allowing
- * the user to exit the shell. If no status is provided, it exits with
- * EXIT_SUCCESS. If a numeric status is provided, it exits with the
- * corresponding exit code. Otherwise, it prints an error message.
+ * handle_unsetenv - Unset environment variable with given name.
+ * @arg: String containing the name of the variable to unset.
  */
-void handle_exit(char *status)
+void handle_unsetenv(char *arg)
 {
-	int valid = 1, exit_code;
-	size_t i;
-	(void) numAliases, (void) aliases;
+    char *name = _strtok(arg, " ");
 
-	if (status == NULL)
-		exit(EXIT_SUCCESS);
-	else
-	{
-		valid = 1;
-		for (i = 0; i < strlen(status); i++)
-		{
-			if (!isdigit(status[i]))
-			{
-				valid = 0;
-				break;
-			}
-		}
-
-		if (valid)
-		{
-			exit_code = atoi(status);
-			exit(exit_code);
-		}
-		else
-			fprintf(stderr, "/bin/sh: 1: exit: Illegal number: %s\n", status);
-	}
+    if (name != NULL)
+    {
+        if (unsetenv(name) != 0)
+            fprintf(stderr, "unsetenv: Unable to unset environment variable\n");
+    }
+    else
+        fprintf(stderr, "unsetenv: Invalid syntax\n");
 }
+
+/**
+ * handle_exit - Exit the shell with the specified exit code.
+ * @arg: String containing the exit code as a decimal number.
+ */
+void handle_exit(char *arg)
+{
+    char *endptr;
+    long exitCode = strtol(arg, &endptr, 10);
+
+    if (*endptr == '\0')
+        exit(exitCode);
+    else
+        fprintf(stderr, "/bin/sh: 3: exit: Illegal number: %s\n", arg);
+}
+
 
 /**
  * handle_env - Displays the current environment variables
