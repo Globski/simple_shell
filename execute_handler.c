@@ -30,7 +30,7 @@ void execute_command(char *command)
 void execute_external_command(char *args[])
 {
 	int status;
-	pid_t pid = fork;
+	pid_t pid = fork();
 
 	if (pid == 0)
 	{
