@@ -61,6 +61,9 @@ void free_arguments(char *args[]);
 /* path_handler.c */
 void handle_path(char *command);
 
+/* file_handler.c */
+void run_file_command(const char *filename);
+
 /* execute_command.c */
 void execute_command(char *args[]);
 
