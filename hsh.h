@@ -57,7 +57,6 @@ char *_getline();
 void handle_signals(int signo);
 
 /* operators_handler.c */
-void handle_command_separator(char *command);
 void handle_logical_and(char *command);
 void handle_logical_or(char *command);
 
