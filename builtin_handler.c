@@ -1,30 +1,6 @@
 #include "hsh.h"
 
-/**
- * handle_setenv - Handles the 'setenv' built-in command
- * @variable: The environment variable to set
- * @value: The value to assign to the environment variable
- *
- * Description: This function implements the 'setenv' command, allowing
- * the user to set or update the value of an environment variable. It
- * checks for correct usage and prints an error message if arguments are
- * missing. If the 'setenv' system call fails, it prints an error message.
- */
-void handle_setenv(char *variable, char *value)
-{
-	(void) numAliases, (void) aliases;
 
-	if (variable == NULL || value == NULL)
-	{
-		fprintf(stderr, "Error: Usage - setenv VARIABLE VALUE\n");
-		return;
-	}
-	if (setenv(variable, value, 1) != 0)
-	{
-		perror("setenv");
-		return;
-	}
-}
 
 /**
  * handle_unsetenv - Handles the 'unsetenv' built-in command
