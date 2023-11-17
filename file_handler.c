@@ -13,8 +13,9 @@
 void run_file_command(const char *filename)
 {
 	char buffer[MAX_ARGS];
-	ssize_t bytesRead;
+	ssize_t bytesRead, i;
 	int file_descriptor;
+	(void) numAliases, (void) aliases;
 
 	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor == -1)
@@ -24,7 +25,7 @@ void run_file_command(const char *filename)
 	}
 	while ((bytesRead = read(file_descriptor, buffer, sizeof(buffer))) > 0)
 	{
-		for (ssize_t i = 0; i < bytesRead; i++)
+		for (i = 0; i < bytesRead; i++)
 		{
 			if (buffer[i] == '\n')
 			{
@@ -33,7 +34,6 @@ void run_file_command(const char *filename)
 			}
 		}
 	}
-
 	if (bytesRead == -1)
 	{
 		perror("read");
