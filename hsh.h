@@ -38,8 +38,8 @@ void handle_cd(char *dir);
 void tokenize_command(char *command, char *args[]);
 void process_builtin_commands(char *input);
 
-/* execute_command.c */
-void execute_command(char *args[]);
+/* execute_handler.c */
+void execute_command(char *command);
 
 /* external_handler.c */
 char *_strtok(char *str, const char *delim);
