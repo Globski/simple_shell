@@ -23,7 +23,9 @@ void add_alias(char *name, char *value)
  */
 void print_alias(void)
 {
-	for (int i = 0; i < numAliases; i++)
+	int i;
+
+	for (i = 0; i < numAliases; i++)
 	{
 		printf("%s='%s'\n", aliases[i].name, aliases[i].value);
 	}
