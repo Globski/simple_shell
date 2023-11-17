@@ -62,7 +62,7 @@ void cleanup(void);
 void handle_special_characters(char *string);
 
 /* shell.c */
-void run_non_interactive_mode();
+void run_non_interactive_mode(void);
 void run_interactive_mode(void);
 
 #endif /* #ifndef HSH_H */
