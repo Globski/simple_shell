@@ -64,4 +64,7 @@ void handle_logical_or(char *command);
 /* shell_utils.c */
 void substitute_variables(char *command);
 
+/* shell.c */
+void run_non_interactive_mode();
+
 #endif /* #ifndef HSH_H */
