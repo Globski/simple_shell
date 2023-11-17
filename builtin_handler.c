@@ -52,6 +52,16 @@ void handle_exit(char *arg)
         fprintf(stderr, "/bin/sh: 3: exit: Illegal number: %s\n", arg);
 }
 
+/**
+ * handle_env - Display the current environment variables.
+ */
+void handle_env()
+{
+    char **env;
+
+    for (env = environ; *env != NULL; env++)
+        printf("%s\n", *env);
+}
 
 /**
  * handle_cd - Change the current working directory.
