@@ -40,23 +40,6 @@ char *_strtok(char *str, const char *delim)
 }
 
 /**
- * handle_comment - Handles comments in the input command
- * @command: The input command string
- *
- * Description: This function searches for a '#' character in the input
- * command and, if found, truncates the command at the '#' character,
- * effectively removing the rest of the string as it is considered a comment.
- */
-void handle_comment(char *command)
-{
-	char *comment_position = strchr(command, '#');
-	(void) numAliases, (void) aliases;
-
-	if (comment_position != NULL)
-		*comment_position = '\0';
-}
-
-/**
  * handle_signals - Handle signals sent to the shell.
  * @signo: The signal number.
  */
