@@ -62,5 +62,6 @@ void cleanup();
 
 /* shell.c */
 void run_non_interactive_mode();
+void run_interactive_mode(void);
 
 #endif /* #ifndef HSH_H */
