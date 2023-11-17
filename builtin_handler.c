@@ -54,24 +54,6 @@ void handle_exit(char *arg)
 
 
 /**
- * handle_env - Displays the current environment variables
- *
- * Description: This function iterates through the current environment
- * variables and prints each one to the standard output.
- */
-void handle_env(void)
-{
-	char **env_var = environ;
-	(void) numAliases, (void) aliases;
-
-	while (*env_var != NULL)
-	{
-		printf("%s\n", *env_var);
-		env_var++;
-	}
-}
-
-/**
  * handle_cd - Change the current working directory.
  * @dir: The target directory path.
  *
