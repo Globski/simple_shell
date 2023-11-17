@@ -34,6 +34,10 @@ void handle_exit(char *arg);
 void handle_env(void);
 void handle_cd(char *dir);
 
+/* command_handler.c */
+void tokenize_command(char *command, char *args[]);
+void process_builtin_commands(char *input)
+
 /* execute_command.c */
 void execute_command(char *args[]);
 
