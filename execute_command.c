@@ -13,6 +13,7 @@ void execute_command(char *args[])
 {
 	int status;
 	pid_t child_pid;
+	(void) numAliases, (void) aliases;
 
 	child_pid = fork();
 	if (child_pid == -1)

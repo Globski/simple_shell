@@ -14,6 +14,7 @@ void handle_command(char *command)
 {
 	char *args[MAX_ARGS], *token;
 	size_t i = 0;
+	(void) numAliases, (void) aliases;
 
 	token = strtok(command, " \t\n");
 	while (token != NULL && i < MAX_ARGS - 1)
@@ -43,7 +44,7 @@ void handle_command(char *command)
 	{
 		if (args[1] == NULL || args[2] != NULL)
 		{
-                }
+		}
 		else
 			run_file_command(args[1]);
 	}
@@ -63,6 +64,7 @@ void handle_command(char *command)
 void free_arguments(char *args[])
 {
 	int i = 0;
+	(void) numAliases, (void) aliases;
 
 	while (args[i] != NULL)
 	{
