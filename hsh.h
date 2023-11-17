@@ -22,6 +22,9 @@
 
 extern char **environ;
 
+/* Original terminal settings */
+struct termios orig_termios;
+
 /* string-handler.c */
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
