@@ -14,16 +14,28 @@ void handle_setenv(char *arg)
         handle_special_characters(value);
 
         if (setenv(name, value, 1) != 0)
-        {
             fprintf(stderr, "setenv: Unable to set environment variable\n");
-        }
     }
     else
-    {
         fprintf(stderr, "setenv: Invalid syntax\n");
-    }
 }
 
+/**
+ * handle_unsetenv - Unset environment variable with given name.
+ * @arg: String containing the name of the variable to unset.
+ */
+void handle_unsetenv(char *arg)
+{
+    char *name = _strtok(arg, " ");
+
+    if (name != NULL)
+    {
+        if (unsetenv(name) != 0)
+            fprintf(stderr, "unsetenv: Unable to unset environment variable\n");
+    }
+    else
+        fprintf(stderr, "unsetenv: Invalid syntax\n");
+}
 /**
  * handle_exit - Handles the 'exit' built-in command
  * @status: The exit status as a string
