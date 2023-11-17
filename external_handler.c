@@ -1,34 +1,42 @@
 #include "hsh.h"
 
 /**
- * _strtok - tokenizes a string.
- * @str: the string to be tokenized.
- * @delim: the delimiter.
- * Return: the tokenized string.
+ * _strtok - Custom string tokenizer function
+ * @str: The string to tokenize
+ * @delim: The delimiter characters
+ *
+ * Description:
+ *   This function tokenizes a string using the specified delimiter
+ *   characters. It maintains state across calls and returns the next
+ *   token in the string. If no more tokens are found, it returns NULL.
+ *
+ * Return:
+ *   - A pointer to the next token in the string.
+ *   - NULL if no more tokens are found or if the input string is NULL.
  */
 char *_strtok(char *str, const char *delim)
 {
-	static char *nextToken;
-	char *ptr;
-	int i;
-	(void) numAliases, (void) aliases;
+	static char *save_ptr;
+	char *token;
 
 	if (str != NULL)
-		nextToken = str;
-	else if (nextToken == NULL)
+		save_ptr = str;
+	else if (save_ptr == NULL)
 		return (NULL);
-	while (*nextToken != '\0' && strchr(delim, *nextToken) != NULL)
-		nextToken++;
-	if (*nextToken == '\0')
+	save_ptr += strspn(save_ptr, delim);
+	if (*save_ptr == '\0')
 		return (NULL);
-	ptr = malloc(sizeof(char) * _strlen(nextToken) + 1);
-	if (ptr == NULL)
-		return (NULL);
-	for (i = 0; nextToken[i] && strchr(delim, nextToken[i]) == NULL; i++)
-		ptr[i] = nextToken[i];
-	ptr[i] = '\0';
-	nextToken += 1;
-	return (ptr);
+	token = save_ptr;
+	save_ptr += strcspn(save_ptr, delim);
+	if (*save_ptr != '\0')
+	{
+		*save_ptr = '\0';
+		save_ptr++;
+	}
+	else
+		save_ptr = NULL;
+
+	return (token);
 }
 
 /**
@@ -48,52 +56,57 @@ void handle_comment(char *command)
 		*comment_position = '\0';
 }
 
-
 /**
- * _getline - Custom getline function to read a line from standard input
+ * _getline - Custom function to read a line from standard input
  *
- * Return: On success, returns a pointer to the read line. On failure or
- * end of file, returns NULL.
+ * Description:
+ *   This function reads a line from standard input and returns a dynamically
+ *   allocated string containing the line. It uses a static buffer for
+ *   efficiency and dynamically adjusts the buffer size as needed.
+ *
+ * Return:
+ *   - A pointer to the dynamically allocated string containing the line.
+ *   - NULL if the end of the input is reached or an error occurs.
  */
 char *_getline()
 {
-	static char buffer[BUFFER_SIZE];
-	static ssize_t buffer_index, buffer_size;
-	ssize_t end_position, line_size, read_size, i;
-	char *line;
-	(void) numAliases, (void) aliases;
+	static char buffer[CHUNK_SIZE];
+	static unsigned int line_size;
+	ssize_t bytes_read;
+	unsigned int index = 0, i, j;
 
-	buffer_index = 0;
-	buffer_size = 0;
-	if (buffer_index >= buffer_size)
+	while (1)
 	{
-		read_size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
-		if (read_size == -1)
+		if (index >= line_size)
 		{
-			perror("read");
-			exit(EXIT_FAILURE);
+			line_size += CHUNK_SIZE;
+			line = (char *)malloc(line_size);
+			if (line == NULL)
+			{
+				perror("custom_getline");
+				exit(EXIT_FAILURE);
+			}
 		}
-		else if (read_size == 0)
-			return (NULL);
-		buffer_size = read_size;
-		buffer_index = 0;
+		if (buffer[0] == '\0')
+		{
+			bytes_read = read(STDIN_FILENO, buffer, CHUNK_SIZE);
+			if (bytes_read <= 0)
+				return (NULL);
+		}
+		for (i = 0; buffer[0] != '\0' && buffer[0] != '\n'; ++i)
+		{
+			line[index++] = buffer[0];
+			for (j = 0; j < CHUNK_SIZE - 1; ++j)
+				buffer[j] = buffer[j + 1];
+			buffer[CHUNK_SIZE - 1] = '\0';
+		}
+		if (buffer[0] == '\n')
+		{
+			buffer[0] = '\0';
+			break;
+		}
 	}
-	end_position = buffer_index;
-	while (end_position < buffer_size && buffer[end_position] != '\n')
-		end_position++;
-	line_size = end_position - buffer_index;
-	line = (char *)malloc(line_size + 1);
-	if (!line)
-	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
-	for (i = 0; i < line_size; i++)
-		line[i] = buffer[buffer_index + i];
-	line[line_size] = '\0';
-	if (end_position < buffer_size && buffer[end_position] == '\n')
-		buffer_index = end_position + 1;
-	else
-		buffer_index = buffer_size;
+	line[index] = '\0';
+
 	return (line);
 }
