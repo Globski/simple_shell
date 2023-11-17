@@ -13,6 +13,7 @@ void run_non_interactive_mode()
         free(input);
     }
 }
+
 /**
  * main - Entry point of the program
  * @argc: Number of command-line arguments
