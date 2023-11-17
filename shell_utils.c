@@ -46,9 +46,40 @@ void substitute_variables(char *command)
  */
 void cleanup()
 {
-    if (line != NULL)
-    {
-        free(line);
-        line = NULL;
-    }
+	if (line != NULL)
+	{
+		free(line);
+		line = NULL;
+	}
+}
+
+/**
+ * handle_special_characters - Escape specific characters in a string.
+ * @string: The input string to process.
+ */
+void handle_special_characters(char *string)
+{
+	unsigned int j = 0;
+	unsigned int i;
+	char *escaped_string = (char *)malloc(strlen(string) * 2 + 1);
+
+	if (escaped_string == NULL)
+	{
+		perror("handle_special_characters");
+		exit(EXIT_FAILURE);
+	}
+
+	for (i = 0; string[i] != '\0'; ++i)
+	{
+		if (string[i] == '\\' && (string[i + 1] == '"'  string[i + 1] == '\''  string[i + 1] == '`'  string[i + 1] == '\\'  string[i + 1] == '*'  string[i + 1] == '&'  string[i + 1] == '#'))
+		{
+			escaped_string[j++] = string[++i];
+		}
+		else
+			escaped_string[j++] = string[i];
+	}
+	escaped_string[j] = '\0';
+
+	strcpy(string, escaped_string);
+	free(escaped_string);
 }
