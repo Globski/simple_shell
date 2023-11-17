@@ -58,7 +58,7 @@ void handle_signals(int signo);
 
 /* shell_utils.c */
 void substitute_variables(char *command);
-void cleanup();
+void cleanup(void);
 void handle_special_characters(char *string);
 
 /* shell.c */
