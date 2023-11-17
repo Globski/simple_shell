@@ -57,6 +57,23 @@ void handle_comment(char *command)
 }
 
 /**
+ * handle_signals - Handle signals sent to the shell.
+ * @signo: The signal number.
+ */
+void handle_signals(int signo)
+{
+	if (signo == SIGINT)
+	{
+		printf("\n$ ");
+		fflush(stdout);
+	}
+	else if (signo == SIGTSTP)
+	{
+
+	}
+}
+
+/**
  * _getline - Custom function to read a line from standard input
  *
  * Description:
