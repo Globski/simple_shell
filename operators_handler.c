@@ -10,26 +10,27 @@
  */
 void handle_command_separator(char *command)
 {
-        char *commands[MAX_ARGS];
-        int i = 0;
-        char *token = _strtok(command, ";");
-        
-        while (token != NULL && i < MAX_ARGS - 1)
-        {
-                commands[i] = strdup(token);
-                token = _strtok(NULL, ";");
-                i++;
-        }
+	char *commands[MAX_ARGS];
+	int i = 0;
+	char *token = _strtok(command, ";");
+	(void) numAliases, (void) aliases;
 
-        commands[i] = NULL;
+	while (token != NULL && i < MAX_ARGS - 1)
+	{
+		commands[i] = strdup(token);
+		token = _strtok(NULL, ";");
+		i++;
+	}
 
-        while (i > 0)
-        {
-                handle_command(commands[i - 1]);
-                i--;
-        }
+	commands[i] = NULL;
 
-        free_arguments(commands);
+	while (i > 0)
+	{
+		handle_command(commands[i - 1]);
+		i--;
+	}
+
+	free_arguments(commands);
 }
 /**
  * handle_logical_and - Handles logical AND command chaining
@@ -43,30 +44,31 @@ void handle_command_separator(char *command)
  */
 void handle_logical_and(char *command)
 {
-        char *commands[MAX_ARGS];
-        int i = 0;
+	char *commands[MAX_ARGS], *token;
+	int i = 0, result;
+	(void) numAliases, (void) aliases;
 
-        char *token = _strtok(command, "&&");
-        while (token != NULL && i < MAX_ARGS - 1)
-        {
-                commands[i] = strdup(token);
-                token = _strtok(NULL, "&&");
-                i++;
-        }
+	token = _strtok(command, "&&");
+	while (token != NULL && i < MAX_ARGS - 1)
+	{
+		commands[i] = strdup(token);
+		token = _strtok(NULL, "&&");
+		i++;
+	}
 
-        commands[i] = NULL;
+	commands[i] = NULL;
 
-        while (commands[i - 1] != NULL)
-        {
-                int result = system(commands[i - 1]);
-                if (result != 0)
-                {
-                        break;
-                }
-                i--;
-        }
+	while (commands[i - 1] != NULL)
+	{
+		result = system(commands[i - 1]);
+		if (result != 0)
+		{
+			break;
+		}
+		i--;
+	}
 
-        free_arguments(commands);
+	free_arguments(commands);
 }
 
 
@@ -82,28 +84,29 @@ void handle_logical_and(char *command)
  */
 void handle_logical_or(char *command)
 {
-        char *commands[MAX_ARGS];
-        int i = 0;
+	char *commands[MAX_ARGS], *token;
+	int i = 0, result;
+	(void) numAliases, (void) aliases;
 
-        char *token = _strtok(command, "||");
-        while (token != NULL && i < MAX_ARGS - 1)
-        {
-                commands[i] = strdup(token);
-                token = _strtok(NULL, "||");
-                i++;
-        }
+	token = _strtok(command, "||");
+	while (token != NULL && i < MAX_ARGS - 1)
+	{
+		commands[i] = strdup(token);
+		token = _strtok(NULL, "||");
+		i++;
+	}
 
-        commands[i] = NULL;
+	commands[i] = NULL;
 
-        while (commands[i - 1] != NULL)
-        {
-                int result = system(commands[i - 1]);
-                if (result == 0)
-                {
-                        break;
-                }
-                i--;
-        }
+	while (commands[i - 1] != NULL)
+	{
+		result = system(commands[i - 1]);
+		if (result == 0)
+		{
+			break;
+		}
+		i--;
+	}
 
-        free_arguments(commands);
+	free_arguments(commands);
 }

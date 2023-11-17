@@ -13,6 +13,8 @@
  */
 void handle_alias(char *args[])
 {
+	(void) numAliases, (void) aliases;
+
 	if (args[1] == NULL)
 		print_alias();
 	else if (args[2] != NULL && strcmp(args[2], "=") == 0)
