@@ -40,3 +40,15 @@ void substitute_variables(char *command)
 			ptr++;
 	}
 }
+
+/**
+ * cleanup - Free allocated resources, if any.
+ */
+void cleanup()
+{
+    if (line != NULL)
+    {
+        free(line);
+        line = NULL;
+    }
+}
