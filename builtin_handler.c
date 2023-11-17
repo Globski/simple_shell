@@ -52,23 +52,15 @@ void handle_exit(char *arg)
 		fprintf(stderr, "/bin/sh: 3: exit: Illegal number: %s\n", arg);
 }
 
-
 /**
- * handle_env - Displays the current environment variables
- *
- * Description: This function iterates through the current environment
- * variables and prints each one to the standard output.
+ * handle_env - Display the current environment variables.
  */
-void handle_env(void)
+void handle_env()
 {
-	char **env_var = environ;
-	(void) numAliases, (void) aliases;
+    char **env;
 
-	while (*env_var != NULL)
-	{
-		printf("%s\n", *env_var);
-		env_var++;
-	}
+    for (env = environ; *env != NULL; env++)
+        printf("%s\n", *env);
 }
 
 /**

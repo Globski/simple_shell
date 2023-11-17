@@ -50,6 +50,7 @@ char *_strchr(char *s, char c);
 /* builtin_handler.c */
 void handle_setenv(char *arg);
 void handle_unsetenv(char *arg);
+void handle_exit(char *arg);
 void handle_env(void);
 void handle_cd(char *dir);
 
