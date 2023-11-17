@@ -1,6 +1,28 @@
 #include "hsh.h"
 
+/**
+ * handle_setenv - Set environment variable with given name and value.
+ * @arg: String containing name and value separated by a space.
+ */
+void handle_setenv(char *arg)
+{
+    char *name = _strtok(arg, " ");
+    char *value = _strtok(NULL, " ");
 
+    if (name != NULL && value != NULL)
+    {
+        handle_special_characters(value);
+
+        if (setenv(name, value, 1) != 0)
+        {
+            fprintf(stderr, "setenv: Unable to set environment variable\n");
+        }
+    }
+    else
+    {
+        fprintf(stderr, "setenv: Invalid syntax\n");
+    }
+}
 
 /**
  * handle_unsetenv - Handles the 'unsetenv' built-in command
