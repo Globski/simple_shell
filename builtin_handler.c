@@ -25,31 +25,6 @@ void handle_setenv(char *arg)
 }
 
 /**
- * handle_unsetenv - Handles the 'unsetenv' built-in command
- * @variable: The environment variable to unset
- *
- * Description: This function implements the 'unsetenv' command, allowing
- * the user to remove an environment variable. It checks for correct usage
- * and prints an error message if the variable argument is missing. If the
- * 'unsetenv' system call fails, it prints an error message.
- */
-void handle_unsetenv(char *variable)
-{
-	(void) numAliases, (void) aliases;
-
-	if (variable == NULL)
-	{
-		fprintf(stderr, "Error: Usage - unsetenv VARIABLE\n");
-		return;
-	}
-	if (unsetenv(variable) != 0)
-	{
-		perror("unsetenv");
-		return;
-	}
-}
-
-/**
  * handle_exit - Handles the 'exit' built-in command
  * @status: The exit status as a string
  *
