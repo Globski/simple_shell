@@ -1,6 +1,19 @@
 #include "hsh.h"
 
 /**
+ * run_non_interactive_mode - Run the shell in non-interactive mode, processing input.
+ */
+void run_non_interactive_mode()
+{
+    char *input;
+
+    while ((input = _getline()) != NULL)
+    {
+        execute_command(input);
+        free(input);
+    }
+}
+/**
  * main - Entry point of the program
  * @argc: Number of command-line arguments
  * @argv: Array of command-line argument strings
@@ -9,7 +22,7 @@
  * and runs interactive or non-interactive mode based on the number of
  * command-line arguments.
  *
- * Return: 0 if sucdessful.
+ * Return: 0 if successful.
  */
 int main(int argc, char **argv)
 {
