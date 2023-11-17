@@ -13,9 +13,9 @@
  */
 int main(void)
 {
-	setenv("PATH", "/bin:/usr/bin", 1);
-
 	char *input;
+	(void) numAliases, (void) aliases;
+	setenv("PATH", "/bin:/usr/bin", 1);
 
 	while (1)
 	{
@@ -23,18 +23,14 @@ int main(void)
 		fflush(stdout);
 
 		input = _getline();
-
 		if (input == NULL)
 		{
 			printf("\n");
 			break;
 		}
-
 		handle_command(input);
-
 		free(input);
 	}
-
 	cleanup_aliases();
 
 	return (0);
