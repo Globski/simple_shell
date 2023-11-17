@@ -25,6 +25,9 @@ extern char **environ;
 /* Original terminal settings */
 struct termios orig_termios;
 
+/* Buffer for user input */
+char *line = NULL;
+
 /* string-handler.c */
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
