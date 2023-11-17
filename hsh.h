@@ -56,8 +56,6 @@ char *_strtok(char *str, const char *delim);
 char *_getline();
 void handle_signals(int signo);
 
-/* operators_handler.c */
-void handle_logical_and(char *command);
 void handle_logical_or(char *command);
 
 #endif /* #ifndef HSH_H */
