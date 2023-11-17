@@ -33,3 +33,25 @@ int main(int argc, char **argv)
 	return (0);
 }
 
+/**
+ * run_interactive_mode - Run the shell in interactive mode, accepting
+ * user input.
+ */
+void run_interactive_mode(void)
+{
+	char input[MAX_INPUT_SIZE];
+
+	while (1)
+	{
+		printf("$ ");
+		fflush(stdout);
+		if (read(STDIN_FILENO, input, MAX_INPUT_SIZE) <= 0)
+		{
+			printf("\n");
+			break;
+		}
+		input[strcspn(input, "\n")] = '\0';
+		if (input[0] != '\0')
+			process_builtin_commands(input);
+	}
+}
