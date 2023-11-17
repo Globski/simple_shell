@@ -44,7 +44,7 @@ void substitute_variables(char *command)
 /**
  * cleanup - Free allocated resources, if any.
  */
-void cleanup()
+void cleanup(void)
 {
 	if (line != NULL)
 	{
