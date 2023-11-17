@@ -1,7 +1,8 @@
 #include "hsh.h"
 
 /**
- * process_builtin_commands - Execute built-in commands or delegate to external command.
+ * process_builtin_commands - Execute built-in commands or delegate
+ *			to external command.
  * @input: The command string to process.
  */
 void process_builtin_commands(char *input)
@@ -11,21 +12,25 @@ void process_builtin_commands(char *input)
 	else if (strncmp(input, "exit ", 5) == 0)
 	{
 		char *arg = input + 5;
+
 		handle_exit(arg);
 	}
 	else if (strncmp(input, "setenv ", 7) == 0)
 	{
 		char *arg = input + 7;
+
 		handle_setenv(arg);
 	}
 	else if (strncmp(input, "unsetenv ", 9) == 0)
 	{
 		char *arg = input + 9;
+
 		handle_unsetenv(arg);
 	}
 	else if (strncmp(input, "cd ", 3) == 0)
 	{
 		char *arg = input + 3;
+
 		handle_cd(arg);
 	}
 	else if (strcmp(input, "clear") == 0)

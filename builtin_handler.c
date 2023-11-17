@@ -55,12 +55,12 @@ void handle_exit(char *arg)
 /**
  * handle_env - Display the current environment variables.
  */
-void handle_env()
+void handle_env(void)
 {
-    char **env;
+	char **env;
 
-    for (env = environ; *env != NULL; env++)
-        printf("%s\n", *env);
+	for (env = environ; *env != NULL; env++)
+		printf("%s\n", *env);
 }
 
 /**
