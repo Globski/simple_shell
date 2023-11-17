@@ -61,4 +61,7 @@ void handle_command_separator(char *command);
 void handle_logical_and(char *command);
 void handle_logical_or(char *command);
 
+/* shell_utils.c */
+void substitute_variables(char *command);
+
 #endif /* #ifndef HSH_H */
