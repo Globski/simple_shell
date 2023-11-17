@@ -56,6 +56,4 @@ char *_strtok(char *str, const char *delim);
 char *_getline();
 void handle_signals(int signo);
 
-void handle_logical_or(char *command);
-
 #endif /* #ifndef HSH_H */
