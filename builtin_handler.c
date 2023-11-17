@@ -38,6 +38,22 @@ void handle_unsetenv(char *arg)
 }
 
 /**
+ * handle_exit - Exit the shell with the specified exit code.
+ * @arg: String containing the exit code as a decimal number.
+ */
+void handle_exit(char *arg)
+{
+    char *endptr;
+    long exitCode = strtol(arg, &endptr, 10);
+
+    if (*endptr == '\0')
+        exit(exitCode);
+    else
+        fprintf(stderr, "/bin/sh: 3: exit: Illegal number: %s\n", arg);
+}
+
+
+/**
  * handle_env - Displays the current environment variables
  *
  * Description: This function iterates through the current environment
