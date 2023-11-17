@@ -12,6 +12,8 @@
  */
 void handle_setenv(char *variable, char *value)
 {
+	(void) numAliases, (void) aliases;
+
 	if (variable == NULL || value == NULL)
 	{
 		fprintf(stderr, "Error: Usage - setenv VARIABLE VALUE\n");
@@ -35,6 +37,8 @@ void handle_setenv(char *variable, char *value)
  */
 void handle_unsetenv(char *variable)
 {
+	(void) numAliases, (void) aliases;
+
 	if (variable == NULL)
 	{
 		fprintf(stderr, "Error: Usage - unsetenv VARIABLE\n");
@@ -60,6 +64,7 @@ void handle_exit(char *status)
 {
 	int valid = 1, exit_code;
 	size_t i;
+	(void) numAliases, (void) aliases;
 
 	if (status == NULL)
 		exit(EXIT_SUCCESS);
@@ -94,6 +99,7 @@ void handle_exit(char *status)
 void handle_env(void)
 {
 	char **env_var = environ;
+	(void) numAliases, (void) aliases;
 
 	while (*env_var != NULL)
 	{
@@ -114,6 +120,7 @@ void handle_cd(char *dir)
 {
 	char *home_dir = getenv("HOME"), new_dir[MAX_ARGS];
 	char *previous_dir = getenv("PWD"), current_dir[MAX_ARGS];
+	(void) numAliases, (void) aliases;
 
 	if (dir == NULL)
 	{
