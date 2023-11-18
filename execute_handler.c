@@ -31,24 +31,31 @@ void execute_external_command(char *args[])
 {
 	int status;
 	pid_t pid = fork();
+	char full_path[MAX_INPUT_SIZE], *path, *token;
 
 	if (pid == 0)
 	{
-		char *path = getenv("PATH");
-		char *token = _strtok(path, ":");
-
-		while (token != NULL)
+		path = getenv("PATH");
+		token = _strtok(path, ":");
+		if (args[0][0] == '/')
 		{
-			char full_path[MAX_INPUT_SIZE];
-
-			snprintf(full_path, sizeof(full_path), "%s/%s", token, args[0]);
-			if (access(full_path, X_OK) == 0)
+			execve(args[0], args, environ);
+			perror("hsh");
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			while (token != NULL)
 			{
-				execve(full_path, args, NULL);
-				perror("hsh");
-				exit(EXIT_FAILURE);
+				snprintf(full_path, sizeof(full_path), "%s/%s", token, args[0]);
+				if (access(full_path, X_OK) == 0)
+				{
+					execve(full_path, args, environ);
+					perror("hsh");
+					exit(EXIT_FAILURE);
+				}
+				token = _strtok(NULL, ":");
 			}
-			token = _strtok(NULL, ":");
 		}
 		fprintf(stderr, "%s: command not found\n", args[0]);
 		exit(EXIT_FAILURE);
