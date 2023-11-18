@@ -71,7 +71,14 @@ void handle_special_characters(char *string)
 
 	for (i = 0; string[i] != '\0'; ++i)
 	{
-		if (string[i] == '\\' && (string[i + 1] == '"'  string[i + 1] == '\''  string[i + 1] == '`'  string[i + 1] == '\\'  string[i + 1] == '*'  string[i + 1] == '&'  string[i + 1] == '#'))
+		if (string[i] == '\\' &&
+				(string[i + 1] == '"' ||
+				 string[i + 1] == '\'' ||
+				 string[i + 1] == '`' ||
+				 string[i + 1] == '\\' ||
+				 string[i + 1] == '*' ||
+				 string[i + 1] == '&' ||
+				 string[i + 1] == '#'))
 		{
 			escaped_string[j++] = string[++i];
 		}

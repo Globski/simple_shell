@@ -23,10 +23,10 @@
 extern char **environ;
 
 /* Original terminal settings */
-struct termios orig_termios;
+extern struct termios orig_termios;
 
 /* Buffer for user input */
-char *line = NULL;
+extern char *line;
 
 /* string-handler.c */
 int _strlen(char *s);
@@ -58,9 +58,11 @@ void handle_signals(int signo);
 
 /* shell_utils.c */
 void substitute_variables(char *command);
-void cleanup();
+void cleanup(void);
+void handle_special_characters(char *string);
 
 /* shell.c */
-void run_non_interactive_mode();
+void run_non_interactive_mode(void);
+void run_interactive_mode(void);
 
 #endif /* #ifndef HSH_H */
