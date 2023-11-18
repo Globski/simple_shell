@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include "hsh.h"
 
+struct termios orig_termios;
+char *line = NULL;
+
 /**
  * process_builtin_commands - Execute built-in commands or delegate
  *			to external command.
