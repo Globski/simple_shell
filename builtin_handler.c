@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include "hsh.h"
 
+struct termios orig_termios;
+char *line = NULL;
+
 /**
  * handle_setenv - Set environment variable with given name and value.
  * @arg: String containing name and value separated by a space.
