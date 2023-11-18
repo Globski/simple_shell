@@ -1,5 +1,8 @@
 #include "hsh.h"
 
+struct termios orig_termios;
+char *line = NULL;
+
 /**
  * run_non_interactive_mode - Run the shell in non-interactive mode,
  * processing input.
