@@ -23,10 +23,10 @@
 extern char **environ;
 
 /* Original terminal settings */
-struct termios orig_termios;
+extern struct termios orig_termios;
 
 /* Buffer for user input */
-char *line = NULL;
+extern char *line;
 
 /* string-handler.c */
 int _strlen(char *s);
