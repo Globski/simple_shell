@@ -8,7 +8,6 @@
 int _strlen(char *s)
 {
 	int len = 0;
-	(void) numAliases, (void) aliases;
 
 	if (s == NULL)
 		return (0);
@@ -26,8 +25,6 @@ int _strlen(char *s)
  */
 int _strcmp(char *s1, char *s2)
 {
-	(void) numAliases, (void) aliases;
-
 	while (*s1 != '\0' || *s2 != '\0')
 	{
 		if (*s1 == *s2)
@@ -52,7 +49,6 @@ int _strcmp(char *s1, char *s2)
 char *_strcpy(char *d, char *s)
 {
 	int i;
-	(void) numAliases, (void) aliases;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -74,7 +70,6 @@ char *_strcpy(char *d, char *s)
 char *_strcat(char *d, char *s)
 {
 	int i, len;
-	(void) numAliases, (void) aliases;
 
 	len = _strlen(d);
 	for (i = 0; s[i] != '\0'; i++)
@@ -94,8 +89,6 @@ char *_strcat(char *d, char *s)
  */
 char *_strchr(char *s, char c)
 {
-	(void) numAliases, (void) aliases;
-
 	while (*s != '\0')
 	{
 		if (*s != c)
