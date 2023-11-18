@@ -1,21 +1,12 @@
 #include "hsh.h"
 
+	struct termios orig_termios;
+	char *line = NULL;
 /**
  * run_non_interactive_mode - Run the shell in non-interactive mode,
  * processing input.
  */
 void run_non_interactive_mode(void)
-{
-	char *input;
-
-	struct termios orig_termios;
-	char *line = NULL;
-
-	/**
-	 * run_non_interactive_mode - Run the shell in non-interactive mode,
-	 * processing input.
-	 */
-	void run_non_interactive_mode(void)
 	{
 		char *input;
 
