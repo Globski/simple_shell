@@ -32,7 +32,6 @@ int main(int argc, char **argv)
 {
 	signal(SIGINT, handle_signals);
 	signal(SIGTSTP, handle_signals);
-
 	tcgetattr(STDIN_FILENO, &orig_termios);
 
 	if (argc == 1)
