@@ -1,17 +1,18 @@
 #include "hsh.h"
 
 /**
- * run_non_interactive_mode - Run the shell in non-interactive mode, processing input.
+ * run_non_interactive_mode - Run the shell in non-interactive mode,
+ * processing input.
  */
-void run_non_interactive_mode()
+void run_non_interactive_mode(void)
 {
-    char *input;
+	char *input;
 
-    while ((input = _getline()) != NULL)
-    {
-        execute_command(input);
-        free(input);
-    }
+	while ((input = _getline()) != NULL)
+	{
+		execute_command(input);
+		free(input);
+	}
 }
 
 /**
