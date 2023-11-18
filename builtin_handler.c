@@ -1,5 +1,5 @@
-#include "hsh.h"
 #include <stdlib.h>
+#include "hsh.h"
 
 /**
  * handle_setenv - Set environment variable with given name and value.
