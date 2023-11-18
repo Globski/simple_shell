@@ -60,11 +60,13 @@ void run_interactive_mode(void)
 
 	while (1)
 	{
-		printf("$ ");
+		if (isatty(STDIN_FILENO))
+			printf("$ ");
 		fflush(stdout);
-		if (read(STDIN_FILENO, input, MAX_INPUT_SIZE) <= 0)
+		if (read(STDIN_FILENO, input, sizeof(input)) <= 0)
 		{
-			printf("\n");
+			if (isatty(STDIN_FILENO))
+				printf("\n");
 			break;
 		}
 		input[strcspn(input, "\n")] = '\0';
